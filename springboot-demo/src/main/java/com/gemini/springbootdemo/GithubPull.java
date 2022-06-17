@@ -2,7 +2,7 @@ package com.gemini.springbootdemo;
 
 public class GithubPull {
 
-    public void setHelloJassi(){
-        System.out.println("hello jassi");
+    public void setHelloAkash(){
+        System.out.println("hello Akash");
     }
 }
