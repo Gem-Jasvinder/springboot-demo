@@ -17,4 +17,5 @@ public class WelcomeController {
         logger.info("Hello"+myName);
         return myName;
     }
+
 }
