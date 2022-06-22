@@ -16,6 +16,8 @@ public class SpringbootDemoApplication {
 
 		SpringApplication.run(SpringbootDemoApplication.class, args);
 		logger.info("Hello World");
+		System.out.println("Hello DIVYANSH");
 	}
+
 
 }
