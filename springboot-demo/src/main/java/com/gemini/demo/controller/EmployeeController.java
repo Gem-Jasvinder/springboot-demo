@@ -1,4 +1,4 @@
-package com.springrestexample.demo.controller;
+package com.gemini.demo.controller;
 
 
 import com.springrestexample.demo.entities.Employee;

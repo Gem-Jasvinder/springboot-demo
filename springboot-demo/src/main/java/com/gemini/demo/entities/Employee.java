@@ -1,4 +1,4 @@
-package com.springrestexample.demo.entities;
+package com.gemini.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;

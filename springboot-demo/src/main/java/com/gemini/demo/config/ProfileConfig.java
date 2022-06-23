@@ -1,4 +1,4 @@
-package com.springrestexample.demo.config;
+package com.gemini.demo.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
