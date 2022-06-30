@@ -14,4 +14,9 @@ public interface studentServies {
     Student store(MultipartFile file) throws IOException;
     Student getFile(UUID id);
     Stream<Student> getAllFiles();
+
+    void deleteById(UUID id);
+
+    Student updateTheData(MultipartFile file,UUID id) throws IOException;
+
 }

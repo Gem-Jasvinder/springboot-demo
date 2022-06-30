@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -49,11 +50,27 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).body(files);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity updateData(@RequestParam("file") MultipartFile file,@PathVariable UUID id) throws IOException {
+        Student studentUpdate= studentServies.updateTheData(file, id);
+        return ResponseEntity.accepted().contentType(MediaType.parseMediaType(studentUpdate.getType())).body(studentUpdate.getData());
+
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteData(@PathVariable UUID id){
+        studentServies.deleteById(id);
+        return ResponseEntity.accepted().build();
+    }
+
     @GetMapping("/files/{id}")
     public ResponseEntity<byte[]> getFile(@PathVariable UUID id) {
        Student student = studentServies.getFile(id);
 
-        return ResponseEntity.ok()
+    if (student == null){
+        return ResponseEntity.notFound().build();
+    }
+       return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(student.getType())).body(student.getData());
 
 
@@ -66,5 +83,8 @@ public class StudentController {
 
 
     }
+
+
+
 
 }

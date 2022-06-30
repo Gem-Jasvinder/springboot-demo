@@ -6,11 +6,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+//@EnableCaching
+//@EnableScheduling
 //@ComponentScan({ "com.gemini.FactorySession","com.gemini.imageUploading"})
 public class SpringbootDemoApplication {
 
@@ -23,6 +27,8 @@ public class SpringbootDemoApplication {
 		ConfigurableApplicationContext context = SpringApplication.run(SpringbootDemoApplication.class, args);
 
 		logger.info("Hello World");
+
+
 
 
 

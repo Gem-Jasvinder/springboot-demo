@@ -5,11 +5,12 @@ import org.hibernate.annotations.Type;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
 @Table(name = "files")
-public class Student {
+public class Student implements Serializable {
 
     @Id
     @GeneratedValue(generator = "UUID")
