@@ -28,6 +28,7 @@ public class StudentServicesImpl implements studentServies {
     @Autowired
    private studentRepo studentRepo;
 
+
     @Override
     public Student store(MultipartFile file) throws IOException {
         String fileName= StringUtils.cleanPath(file.getOriginalFilename());

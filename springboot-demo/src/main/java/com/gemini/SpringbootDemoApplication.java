@@ -1,11 +1,16 @@
 package com.gemini;
 
+import com.gemini.Producer_consumer.Reader;
+import com.gemini.Producer_consumer.Writer;
+import com.gemini.Producer_consumer.book;
 import com.gemini.imageUploading.repo.studentRepo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -27,6 +32,15 @@ public class SpringbootDemoApplication {
 		ConfigurableApplicationContext context = SpringApplication.run(SpringbootDemoApplication.class, args);
 
 		logger.info("Hello World");
+
+		//producer_consumer code
+
+		book book1 = new book();
+		Reader r= new Reader(book1);
+		Writer w= new Writer(book1);
+		w.start();
+		r.start();
+
 
 
 
