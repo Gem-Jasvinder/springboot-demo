@@ -1,5 +1,8 @@
 package com.gemini;
 
+import com.gemini.Producer_consumer.Reader;
+import com.gemini.Producer_consumer.Writer;
+import com.gemini.Producer_consumer.book;
 import com.gemini.imageUploading.repo.studentRepo;
 
 import com.gemini.multithreading.Company;
@@ -7,8 +10,10 @@ import com.gemini.multithreading.Consumer;
 import com.gemini.multithreading.Producer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -31,6 +36,7 @@ public class SpringbootDemoApplication {
 
 		logger.info("Hello World");
 
+
 		Company company=new Company();
 		//for(int i=0;i<10;i++) {
 			Producer producer = new Producer(company);
@@ -38,6 +44,11 @@ public class SpringbootDemoApplication {
 			producer.start();
 			consumer.start();
 		//}
+
+
+
+
+
 
 
 
