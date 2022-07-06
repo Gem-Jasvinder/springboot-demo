@@ -2,6 +2,9 @@ package com.gemini;
 
 import com.gemini.imageUploading.repo.studentRepo;
 
+import com.gemini.multithreading.Company;
+import com.gemini.multithreading.Consumer;
+import com.gemini.multithreading.Producer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -28,7 +31,13 @@ public class SpringbootDemoApplication {
 
 		logger.info("Hello World");
 
-
+		Company company=new Company();
+		//for(int i=0;i<10;i++) {
+			Producer producer = new Producer(company);
+			Consumer consumer = new Consumer(company);
+			producer.start();
+			consumer.start();
+		//}
 
 
 
