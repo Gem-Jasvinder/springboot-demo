@@ -11,8 +11,9 @@ public class Reader  extends  Thread{
     {
         while(true)
         {
+            this.book.reader();
             try {
-                this.book.reader();
+               sleep(3000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

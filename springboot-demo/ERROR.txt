@@ -1,0 +1,33 @@
+Before this you have to replace your localhost to yourIP   
+
+ERROR:-
+
+java.sql.SQLException: null,  message from server: "Host 'GEMGN-210026.mshome.net' is not allowed to connect to this MySQL server"
+
+
+REASON:-
+
+As sql server by deafult the localhost(127.0.0.1)this is by deafult ip by which the mysql server connected but we want to conenct your ip so we have to provide the access in the database to connect this id also.
+
+SOLUTION:-
+
+
+1.(TO SEE THE WHERE WE CAN HOST THE MYSQL SERVER)
+ 
+SELECT host FROM mysql.user WHERE user = "database_username";
+
+2. Run the following GRANT command to enable MySQL access for the remote user from a remote host
+
+CREATE USER 'database_user'@'yourIP' IDENTIFIED BY 'db_password';
+GRANT ALL PRIVILEGES ON db_name.* TO 'db_username'@'yourIP';
+FLUSH PRIVILEGES;
+
+
+REFERNCED LINKS:-
+
+https://www.tecmint.com/fix-error-1130-hy000-host-not-allowed-to-connect-mysql/
+https://stackoverflow.com/questions/50177216/how-to-grant-all-privileges-to-root-user-in-mysql-8-0
+https://stackoverflow.com/questions/1559955/host-xxx-xx-xxx-xxx-is-not-allowed-to-connect-to-this-mysql-server
+
+*****************************************************************************************************************************************************************************
+

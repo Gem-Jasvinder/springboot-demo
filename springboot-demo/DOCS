@@ -1,0 +1,37 @@
+//FOR THE INSTALLATION OF DOCKER STEP-BY-STEP:
+
+1.Raise the request from the service-desk portal for installation of docker
+LINK-(https://servicedesk.geminisolutions.com/index.php)
+NOTE:The IT Team install it for you.
+
+//FOR CREATING THE DOCKER IMAGE
+
+Step-1: Create the docker file in your project with filename(Dockerfile) then open the project in terminal(Powershell,cmd,gitbash).
+Step-2: COMMANDS for creating images
+
+docker build --tag DockerImage_Name:Tag .
+
+//TO check the existing images
+           docker images -a
+
+//TO remove the image
+               docker rmi DockerImage_Name
+
+Step-3: Commands to run the Container from the image we create above
+               docker run DockerImage_Name
+
+//if you are using some port in your application than you have to map it with your local machine
+                docker run --publish containerPort:hostMachinePort DockerImage_Name
+                ex-(docker run --publish 8080:8080 DockerImage_Name)
+
+//TO see the running Containers
+                docker ps
+
+//TO see the all containers
+            docker ps -a
+
+//TO  remove the the containers
+            docker rm containerName
+            OR
+            docker rm containerID
+

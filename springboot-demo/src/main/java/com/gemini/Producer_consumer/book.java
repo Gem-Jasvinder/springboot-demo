@@ -9,30 +9,36 @@ import java.util.*;
 public class book {
 
     public static final Logger logger= LoggerFactory.getLogger(book.class);
-    int i=0;
+    int n;
+    int capacity=10;
     Stack<Integer> stack = new Stack<Integer>();
-    synchronized public void writer() throws InterruptedException {
+    synchronized public void writer(int n)  {
 
-        if (!(stack.empty())){
-            wait();
+        this.n=n;
+        while (stack.size() == capacity){
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
-       logger.info("Writer writes-"+i);
-        stack.push(i);
-        i++;
-        Thread.sleep(3000);
+        stack.push(n);
+       logger.info("Writer writes-"+n);
+
         notify();
 
     }
 
-     synchronized public void reader() throws InterruptedException {
+     synchronized public void reader() {
 
-        if (stack.empty()){
-            wait();
+        while(stack.empty()){
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
         logger.info("Reader reads-"+stack.pop());
-
-        Thread.sleep(1000);
-
          notify();
     }
 }

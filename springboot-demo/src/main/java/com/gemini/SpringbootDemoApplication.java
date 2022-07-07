@@ -37,13 +37,23 @@ public class SpringbootDemoApplication {
 		logger.info("Hello World");
 
 
-		Company company=new Company();
-		//for(int i=0;i<10;i++) {
-			Producer producer = new Producer(company);
-			Consumer consumer = new Consumer(company);
-			producer.start();
-			consumer.start();
-		//}
+//		Company company=new Company();
+//		for(int i=0;i<10;i++) {
+//			Producer producer = new Producer(company);
+//			producer.start();}
+//		for (int i=0;i<5;i++){
+//			Consumer consumer = new Consumer(company);
+//			consumer.start();}
+//		//}
+
+//		book book1 =new book();
+//
+//		for(int i=0;i<=5;i++) {
+//			Reader r = new Reader(book1);
+//			Writer w = new Writer(book1);
+//			w.start();
+//			r.start();
+//		}
 
 
 

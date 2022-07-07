@@ -9,13 +9,16 @@ public class Writer extends Thread {
 
     public void run()
     {
+        int n=1;
         while(true)
         {
+            this.book.writer(n);
             try {
-                this.book.writer();
+                sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            n++;
 
 
         }
