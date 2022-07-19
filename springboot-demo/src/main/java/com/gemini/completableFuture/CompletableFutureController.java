@@ -1,7 +1,6 @@
 package com.gemini.completableFuture;
 
-import com.gemini.ExcuetorServices.ExcuetorServices;
-import com.gemini.SpringbootDemoApplication;
+import org.apache.tomcat.jni.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
@@ -33,9 +33,9 @@ public class CompletableFutureController {
     }
 
     @GetMapping("/getUser")
-    public CompletableFuture<List<String>> getTheUser(){
-        ExecutorService excuetorServices= Executors.newFixedThreadPool(3);
-           CompletableFuture<List<String>> list= CompletableFuture.supplyAsync(()-> {
+    public Object getTheUser(){
+        ExecutorService excuetorServices= Executors.newFixedThreadPool(10);
+           CompletableFuture<Object> future1= CompletableFuture.supplyAsync(()-> {
                         logger.info("Thread" +Thread.currentThread().getId());
                        return this.completableFutureService.getUser();
             },excuetorServices).thenApplyAsync((User)-> {
@@ -44,9 +44,38 @@ public class CompletableFutureController {
                    },excuetorServices).thenApplyAsync((User)->{
                logger.info("Thread" +Thread.currentThread().getId());
                        return User.stream().map(CompletableFutureEntity::getName).collect(Collectors.toList());
-           },excuetorServices);
-
-      return list;
+           },excuetorServices).handle((User,ex)->{
+               if (ex!=null)return ex.getMessage();
+               else return User;
+           });
+        CompletableFuture<Object> future2= CompletableFuture.supplyAsync(()-> {
+            logger.info("Thread" +Thread.currentThread().getId());
+            return this.completableFutureService.getUser();
+        },excuetorServices).thenApplyAsync((User)-> {
+            logger.info("Thread" +Thread.currentThread().getId());
+            return User.stream().filter(user -> user.getAvailable().equals(true)).collect(Collectors.toList());
+        },excuetorServices).thenApplyAsync((User)->{
+            logger.info("Thread" +Thread.currentThread().getId());
+            return User.stream().map(CompletableFutureEntity::getName).collect(Collectors.toList());
+        },excuetorServices).handle((User,ex)->{
+            if (ex!=null)return ex.getMessage();
+            else return User;
+        });
+        CompletableFuture<Object> future3= CompletableFuture.supplyAsync(()-> {
+            logger.info("Thread" +Thread.currentThread().getId());
+            return this.completableFutureService.getUser();
+        },excuetorServices).thenApplyAsync((User)-> {
+            logger.info("Thread" +Thread.currentThread().getId());
+            return User.stream().filter(user -> user.getTraining().equals(true)).collect(Collectors.toList());
+        },excuetorServices).thenApplyAsync((User)->{
+            logger.info("Thread" +Thread.currentThread().getId());
+            return User.stream().map(CompletableFutureEntity::getName).collect(Collectors.toList());
+        },excuetorServices).handle((User,ex)->{
+            if (ex!=null)return ex.getMessage();
+            else return User;
+        });
+        CompletableFuture<Object> listCompletableFuture=CompletableFuture.anyOf(future1,future2,future3);
+        return listCompletableFuture.join();
     }
 
 

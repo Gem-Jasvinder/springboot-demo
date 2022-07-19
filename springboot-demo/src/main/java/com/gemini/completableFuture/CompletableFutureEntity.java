@@ -20,6 +20,8 @@ public class CompletableFutureEntity {
     private int id;
     private String name;
     private Double rating;
+    private Boolean available;
+    private Boolean training;
 
 }
 
